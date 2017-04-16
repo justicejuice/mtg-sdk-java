@@ -14,10 +14,13 @@ import java.io.Serializable;
  * Card class that is created from the JSON set representation.
  *
  * @author thechucklingatom
+ * @author Timon Link - timon.link@gmail.com
  */
-@SuppressWarnings("serial")
 public class Card implements Serializable {
-	private String id;
+
+    private static final long serialVersionUID = 1069938909303343606L;
+
+    private String id;
 	private String layout;
 	private String name;
 	private String[] names;
@@ -53,6 +56,7 @@ public class Card implements Serializable {
 	private String setName;
 	private String[] printings;
 	private String imageUrl;
+	private Rule[] rulings;
 
 	public String getId() {
 		return id;
@@ -372,5 +376,21 @@ public class Card implements Serializable {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+    /**
+     * Returns the rulings of this {@link Card}.
+     * @return The rulings of this {@link Card}.
+     */
+	public Rule[] getRulings() {
+		return rulings;
+	}
+
+    /**
+     * Sets the rulings of this {@link Card}.
+     * @param rulings The rulings to set.
+     */
+	public void setRulings(Rule[] rulings) {
+		this.rulings = rulings;
 	}
 }

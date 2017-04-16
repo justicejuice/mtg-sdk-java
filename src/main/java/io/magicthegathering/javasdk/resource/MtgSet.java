@@ -1,5 +1,6 @@
 package io.magicthegathering.javasdk.resource;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -15,8 +16,11 @@ import java.util.List;
  *
  * @author thechucklingatom
  */
-public class MtgSet {
-	private String name;
+public class MtgSet implements Serializable {
+
+    private static final long serialVersionUID = 1375843953273693772L;
+
+    private String name;
 	private String code;
 	private String gathererCode;
 	private String oldCode;

@@ -2,16 +2,16 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>io.magicthegathering</groupId>
+	<groupId>name.tlink.mtg</groupId>
 	<artifactId>javasdk</artifactId>
-	<version>0.0.6</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>
 		A Java SDK for accessing the magicthegathering.io HTTP API
 	</description>
-	<url>https://github.com/MagicTheGathering/mtg-sdk-java</url>
+	<url>https://github.com/justicejuice/mtg-sdk-java</url>
 
 	<licenses>
 		<license>
@@ -33,12 +33,16 @@
 			<organization>magicthegathering.io</organization>
 			<organizationUrl>http://www.magicthegathering.io</organizationUrl>
 		</developer>
+		<developer>
+			<name>Timon Link</name>
+			<email>timon.link@gmail.com</email>
+		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://github.com/MagicTheGathering/mtg-sdk-java.git</connection>
-		<developerConnection>scm:git:ssh://github.com/MagicTheGathering/mtg-sdk-java.git</developerConnection>
-		<url>https://github.com/MagicTheGathering/mtg-sdk-java</url>
+		<connection>scm:git:git://github.com/justicejuice/mtg-sdk-java.git</connection>
+		<developerConnection>scm:git:ssh://github.com/justicejuice/mtg-sdk-java.git</developerConnection>
+		<url>https://github.com/justicejuice/mtg-sdk-java</url>
 	</scm>
 
 	<properties>
