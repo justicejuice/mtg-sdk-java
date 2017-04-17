@@ -24,7 +24,9 @@ Development State   | Feature Name          | Description
 --------------------|-----------------------|---------------------------------------------------------------
 implemented         | Rulings               | Extracts the rulings array of the cards from JSON response.
 implemented         | Fluent Querying       | Developers should be able to use filters in a fluent and readable way.
+not implemented     | Fitler Integration    | The Filter mechanism must be integrated to the existing API.
 implemented         | NameFilter            | Adds support for filtering by a cards name.
+implemented         | LayoutFilter          | Adds support for filtering by a cards layout.
 
 Prerequisites
 -------
