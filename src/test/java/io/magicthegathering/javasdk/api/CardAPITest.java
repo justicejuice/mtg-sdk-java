@@ -120,7 +120,7 @@ public class CardAPITest extends MTGAPITest {
         airElemental.setName("Air Elemental");
         airElemental.setManaCost("{3}{U}{U}");
 
-        Filter filter = new Filter().withName("Air").end();
+        Filter filter = new Filter().byName("Air").end();
 
         // Act.
         List<Card> cards = CardAPI.getAllCards(filter);

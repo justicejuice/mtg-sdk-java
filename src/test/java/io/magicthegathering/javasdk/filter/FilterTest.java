@@ -22,25 +22,26 @@ public class FilterTest {
         Filter testee = new Filter();
 
         // Act.
-        String query = testee.withName("Nissa").or("Jace").end().compile();
+        String query = testee.byName("Nissa").or("Jace").end().compile();
 
         // Assert.
         assertEquals("?name=Nissa|Jace", query);
     }
 
     @Test
-    public void testCompileMultiple() {
+    public void testCompileAllFilters() {
         // Arrange.
         Filter testee = new Filter();
 
         // Act.
         String query = testee
-                .withName("Nissa").or("Jace").end()
-                .withLayout(Layout.DOUBLE_FACED).or(Layout.NORMAL).end()
+                .byName("Nissa").or("Jace").nextFilter()
+                .byLayout(Layout.DOUBLE_FACED).or(Layout.NORMAL).nextFilter()
+                .byConvertedManaCost("5").end()
                 .compile();
 
         // Assert.
-        assertEquals("?name=Nissa|Jace&layout=double-faced|normal", query);
+        assertEquals("?name=Nissa|Jace&layout=double-faced|normal&cmc=5", query);
     }
 
     @Test(expected = FilterAlreadyExistsException.class)
@@ -49,7 +50,7 @@ public class FilterTest {
         Filter testee = new Filter();
 
         // Act.
-        testee.withName("Nissa").nextFilter().withName("Jace").end().compile();
+        testee.byName("Nissa").nextFilter().byName("Jace").end().compile();
     }
 
 }

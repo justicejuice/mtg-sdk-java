@@ -30,7 +30,7 @@ public class Filter {
      * @param name The name to filter by.
      * @return The {@link NameFilter} instance.
      */
-    public NameFilter withName(String name) {
+    public NameFilter byName(String name) {
         NameFilter nameFilter = new NameFilter(this, name);
 
         addFilter(nameFilter);
@@ -44,12 +44,26 @@ public class Filter {
      * @param layout The {@link Layout} to filter by.
      * @return The {@link LayoutFilter} instance.
      */
-    public LayoutFilter withLayout(Layout layout) {
+    public LayoutFilter byLayout(Layout layout) {
         LayoutFilter layoutFilter = new LayoutFilter(this, layout);
 
         addFilter(layoutFilter);
 
         return layoutFilter;
+    }
+
+    /**
+     * Filters by the given converted mana cost.
+     *
+     * @param manaCost The converted mana cost to filter by.
+     * @return The {@link ConvertedManaCostFilter} instance.
+     */
+    public ConvertedManaCostFilter byConvertedManaCost(String manaCost) {
+        ConvertedManaCostFilter convertedManaCostFilter = new ConvertedManaCostFilter(this, manaCost);
+
+        addFilter(convertedManaCostFilter);
+
+        return convertedManaCostFilter;
     }
 
     /**

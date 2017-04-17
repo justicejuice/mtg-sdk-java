@@ -20,13 +20,14 @@ Read the official API website for more information.
 
 Following table shows the features which are supported, or planning to be supported soon, by this fork.
 
-Development State   | Feature Name          | Description
---------------------|-----------------------|---------------------------------------------------------------
-implemented         | Rulings               | Extracts the rulings array of the cards from JSON response.
-implemented         | Fluent Querying       | Developers should be able to use filters in a fluent and readable way.
-implemented         | Filter Integration    | The Filter mechanism must be integrated to the existing API.
-implemented         | NameFilter            | Adds support for filtering by a cards name.
-implemented         | LayoutFilter          | Adds support for filtering by a cards layout.
+Development State   | Feature Name              | Description
+--------------------|---------------------------|---------------------------------------------------------------
+implemented         | Rulings                   | Extracts the rulings array of the cards from JSON response.
+implemented         | Fluent Querying           | Developers should be able to use filters in a fluent and readable way.
+implemented         | Filter Integration        | The Filter mechanism must be integrated to the existing API.
+implemented         | NameFilter                | Adds support for filtering by a cards name.
+implemented         | LayoutFilter              | Adds support for filtering by a cards layout.
+implemented         | ConvertedManaCostFilter   | Adds support for filtering by a cards converted mana costs.
 
 Prerequisites
 -------
@@ -49,8 +50,8 @@ List<Card> cards = CardAPI.getAllCards();
 #### Get all cards filtered with new filter mechanism
 ```java
 Filter filter = new Filter()
-    .withName("Nissa").or("Jace").nextFilter()
-    .withLayout(Layout.NORMAL).or(Layout.DOUBLE_FACED).end();
+    .byName("Nissa").or("Jace").nextFilter()
+    .byLayout(Layout.NORMAL).or(Layout.DOUBLE_FACED).end();
 
 List<Card> filteredCards = CardAPI.getAllCards(filter);
 ```

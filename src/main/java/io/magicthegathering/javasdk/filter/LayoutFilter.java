@@ -15,7 +15,7 @@ public class LayoutFilter extends AbstractListOrFilter {
     private static final String PARAMETER_NAME = "layout";
 
     /**
-     * Creates a new instance of {@link AbstractListOrFilter}.
+     * Creates a new instance of {@link LayoutFilter}.
      *
      * @param filter The {@link Filter filter} to assign to <code>this</code> {@link Filter filter}.
      * @param layout The {@link Layout} to filter by.
