@@ -10,7 +10,7 @@ import io.magicthegathering.javasdk.filter.domain.Layout;
  *
  * @author Timon Link - timon.link@gmail.com
  */
-class LayoutFilter extends AbstractListOrFilter {
+public class LayoutFilter extends AbstractListOrFilter {
 
     private static final String PARAMETER_NAME = "layout";
 

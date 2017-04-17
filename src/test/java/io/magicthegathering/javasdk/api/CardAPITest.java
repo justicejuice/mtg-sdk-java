@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import io.magicthegathering.javasdk.api.testutil.DateUtil;
+import io.magicthegathering.javasdk.filter.Filter;
 import io.magicthegathering.javasdk.resource.Card;
 
 import java.text.ParseException;
@@ -99,7 +100,7 @@ public class CardAPITest extends MTGAPITest {
 	}
 
 	@Test
-	public void testCardFilter(){
+	public void testCardFilterList(){
 		ArrayList<String> filter = new ArrayList<>();
 		filter.add("name=Air");
 
@@ -109,4 +110,22 @@ public class CardAPITest extends MTGAPITest {
 		testCard.setManaCost("{3}{U}{U}");
 		assertTrue(CardAPI.getAllCards(filter).contains(testCard));
 	}
+
+    @Test
+    public void testCardFilter() {
+        // Arrange.
+        Card airElemental = new Card();
+
+        airElemental.setMultiverseid(94);
+        airElemental.setName("Air Elemental");
+        airElemental.setManaCost("{3}{U}{U}");
+
+        Filter filter = new Filter().withName("Air").end();
+
+        // Act.
+        List<Card> cards = CardAPI.getAllCards(filter);
+
+        // Assert.
+        assertTrue(cards.contains(airElemental));
+    }
 }

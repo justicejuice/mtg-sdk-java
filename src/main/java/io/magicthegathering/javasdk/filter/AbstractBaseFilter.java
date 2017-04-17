@@ -15,7 +15,7 @@ package io.magicthegathering.javasdk.filter;
  *
  * @author Timon Link - timon.link@gmail.com
  */
-abstract class AbstractBaseFilter {
+public abstract class AbstractBaseFilter {
 
     protected String expression;
 

@@ -8,7 +8,7 @@ package io.magicthegathering.javasdk.filter;
  *
  * @author Timon Link - timon.link@gmail.com
  */
-class NameFilter extends AbstractListOrFilter {
+public class NameFilter extends AbstractListOrFilter {
 
     private static final String PARAMETER_NAME = "name";
 

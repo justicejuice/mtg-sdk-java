@@ -15,7 +15,7 @@ package io.magicthegathering.javasdk.filter;
  *
  * @author Timon Link - timon.link@gmail.com
  */
-abstract class AbstractListOrFilter extends AbstractBaseFilter {
+public abstract class AbstractListOrFilter extends AbstractBaseFilter {
 
     private static final String LOGICAL_OR = "|";
 

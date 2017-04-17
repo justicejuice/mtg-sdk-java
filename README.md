@@ -24,7 +24,7 @@ Development State   | Feature Name          | Description
 --------------------|-----------------------|---------------------------------------------------------------
 implemented         | Rulings               | Extracts the rulings array of the cards from JSON response.
 implemented         | Fluent Querying       | Developers should be able to use filters in a fluent and readable way.
-not implemented     | Fitler Integration    | The Filter mechanism must be integrated to the existing API.
+implemented         | Filter Integration    | The Filter mechanism must be integrated to the existing API.
 implemented         | NameFilter            | Adds support for filtering by a cards name.
 implemented         | LayoutFilter          | Adds support for filtering by a cards layout.
 
@@ -46,6 +46,15 @@ Card card = CardAPI.getCard(multiverseId);
 List<Card> cards = CardAPI.getAllCards();
 ```
 
+#### Get all cards filtered with new filter mechanism
+```java
+Filter filter = new Filter()
+    .withName("Nissa").or("Jace").nextFilter()
+    .withLayout(Layout.NORMAL).or(Layout.DOUBLE_FACED).end();
+
+List<Card> filteredCards = CardAPI.getAllCards(filter);
+```
+
 #### Get a Set
 ```java
 String setCode = "KLD";
@@ -63,10 +72,6 @@ String setCode = "KLD";
 List<Card> booster = SetAPI.getBooster(setCode);
 ```
 
-#### Create a Path with Filter API
-```java
-String path = new Filter().withName("Nissa").or("Jace").end().compile();
-```
 License
 -------
 This project is licensed under [MIT license](http://opensource.org/licenses/MIT).

@@ -1,5 +1,6 @@
 package io.magicthegathering.javasdk.api;
 
+import io.magicthegathering.javasdk.filter.Filter;
 import io.magicthegathering.javasdk.resource.Card;
 
 import java.util.List;
@@ -71,4 +72,15 @@ public class CardAPI extends MTGAPI {
 	public static List<Card> getAllCards(List<String> filters){
 		return getList(RESOURCE_PATH, "cards", Card.class, filters);
 	}
+
+    /**
+     * Get all {@link Card cards} that matches the given {@link Filter filter}.
+     *
+     * @param filter The {@link Filter filter} to filter by.
+     * @return List of all matching {@link Card cards}.
+     */
+    public static List<Card> getAllCards(Filter filter) {
+        String path = RESOURCE_PATH + filter.compile();
+        return getList(path, "cards", Card.class);
+    }
 }
