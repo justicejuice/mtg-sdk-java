@@ -1,5 +1,12 @@
 package io.magicthegathering.javasdk.filter;
 
+import io.magicthegathering.javasdk.exception.FilterAlreadyExistsException;
+import io.magicthegathering.javasdk.filter.domain.Layout;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 /**
  * <p>
  *     This class offers the opportunity to
@@ -11,28 +18,72 @@ package io.magicthegathering.javasdk.filter;
  */
 public class Filter {
 
-    private String expression;
+    private Set<AbstractBaseFilter> appliedFilters;
+
+    public Filter() {
+        appliedFilters = new LinkedHashSet<>();
+    }
 
     /**
      * Starts the {@link NameFilter}-Chain.
      *
-     * @param name The name to filter for.
+     * @param name The name to filter by.
      * @return The {@link NameFilter} instance.
      */
     public NameFilter withName(String name) {
-        return new NameFilter(this, expression, name);
+        NameFilter nameFilter = new NameFilter(this, name);
+
+        addFilter(nameFilter);
+
+        return nameFilter;
     }
 
+    /**
+     * Starts the {@link LayoutFilter}-Chain.
+     *
+     * @param layout The {@link Layout} to filter by.
+     * @return The {@link LayoutFilter} instance.
+     */
+    public LayoutFilter withLayout(Layout layout) {
+        LayoutFilter layoutFilter = new LayoutFilter(this, layout);
 
-    public String filter() {
-        return expression;
+        addFilter(layoutFilter);
+
+        return layoutFilter;
     }
 
-    public String getExpression() {
-        return expression;
+    /**
+     * <p>
+     *     Adds the given {@link AbstractBaseFilter filter} to the
+     *     appliedFilters.
+     * </p>
+     * <p>
+     *     If the given filter already exists, this method throws a
+     *     {@link FilterAlreadyExistsException}.
+     * </p>
+     *
+     * @param filterToAdd The {@link Filter} to add.
+     */
+    private void addFilter(AbstractBaseFilter filterToAdd) {
+        if (appliedFilters.contains(filterToAdd)) {
+            throw new FilterAlreadyExistsException(filterToAdd.parameterName());
+        }
+        appliedFilters.add(filterToAdd);
     }
 
-    void setExpression(String expression) {
-        this.expression = expression;
+    /**
+     * Finishes the filter-chain.
+     *
+     * @return The final resulting expression to filter by.
+     */
+    public String compile() {
+        String expression = "?";
+
+        for (AbstractBaseFilter filter : appliedFilters) {
+            expression += filter.expression + "&";
+        }
+
+        return StringUtils.removeEnd(expression, "&");
     }
+
 }

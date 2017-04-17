@@ -63,7 +63,7 @@ List<Card> booster = SetAPI.getBooster(setCode);
 
 #### Create a Path with Filter API
 ```java
-String path = new Filter().withName("Nissa").or("Jace").end().filter();
+String path = new Filter().withName("Nissa").or("Jace").end().compile();
 ```
 License
 -------

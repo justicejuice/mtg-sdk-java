@@ -16,11 +16,10 @@ class NameFilter extends AbstractListOrFilter {
      * Creates a new instance of {@link NameFilter}.
      *
      * @param filter The {@link Filter filter} to assign to <code>this</code> {@link Filter filter}.
-     * @param expression The expression to assign to <code>this</code> expression.
      * @param name The name of the {@link io.magicthegathering.javasdk.resource.Card cards} to filter by.
      */
-    NameFilter(Filter filter, String expression, String name) {
-        super(filter, expression);
+    NameFilter(Filter filter, String name) {
+        super(filter);
         addValue(name);
     }
 

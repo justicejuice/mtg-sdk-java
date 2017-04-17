@@ -24,10 +24,9 @@ abstract class AbstractListAndFilter extends AbstractListOrFilter {
      * Creates a new Instance of {@link AbstractListAndFilter}.
      *
      * @param filter The {@link Filter filter} to assign to <code>this</code> {@link Filter filter}.
-     * @param expression The expression to assign to <code>this</code> expression.
      */
-    AbstractListAndFilter(Filter filter, String expression) {
-        super(filter, expression);
+    AbstractListAndFilter(Filter filter) {
+        super(filter);
     }
 
     /**
@@ -38,8 +37,11 @@ abstract class AbstractListAndFilter extends AbstractListOrFilter {
      *
      * @return <code>this</code> for further chaining.
      */
-    public AbstractBaseFilter and(String value) {
+    public AbstractListAndFilter and(String value) {
         expression += LOGICAL_AND;
-        return addValue(value);
+
+        addValue(value);
+
+        return this;
     }
 }

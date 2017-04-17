@@ -17,7 +17,8 @@ package io.magicthegathering.javasdk.filter;
  */
 abstract class AbstractBaseFilter {
 
-    String expression;
+    protected String expression;
+
     private Filter filter;
 
     protected abstract String parameterName();
@@ -26,11 +27,9 @@ abstract class AbstractBaseFilter {
      * Creates a new instance of the {@link AbstractBaseFilter}.
      *
      * @param filter The {@link Filter filter} to assign to <code>this</code> {@link Filter filter}.
-     * @param expression The expression to assign to <code>this</code> expression.
      */
-    AbstractBaseFilter(Filter filter, String expression) {
+    AbstractBaseFilter(Filter filter) {
         this.filter = filter;
-        this.expression = expression;
         createStartExpression();
     }
 
@@ -38,26 +37,10 @@ abstract class AbstractBaseFilter {
     /**
      * This method creates <this>this</this> filters start
      * expression.
-     * It has to be called when
      */
     private void createStartExpression() {
-        if (isFirst()) {
-            expression = "?";
-        } else {
-            expression += "&";
-        }
-        expression += parameterName();
+        expression = parameterName();
         expression += "=";
-    }
-
-    /**
-     * Checks if <code>this</code> filter is the first query
-     * parameter of the expression.
-     *
-     * @return <code>true</code> if the filter is the first query parameter, else <code>false</code>.
-     */
-    private boolean isFirst() {
-        return expression == null || expression.isEmpty();
     }
 
     /**
@@ -78,26 +61,33 @@ abstract class AbstractBaseFilter {
      * @return The {@link Filter filter}.
      */
     public Filter end() {
-        filter.setExpression(expression);
         return filter;
     }
 
     /**
-     * Returns the expression of the filter. It
-     * will result in a query URL.
+     * Ends <code>this</code> filter and starts
+     * a new one.
      *
-     * @return The expression.
+     * @return The {@link Filter filter}.
      */
-    public String getExpression() {
-        return expression;
+    public Filter nextFilter() {
+        return filter;
     }
 
-    /**
-     * Sets <code>this</code> expression to the given expression.
-     *
-     * @param expression The expression to set.
-     */
-    public void setExpression(String expression) {
-        this.expression = expression;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof AbstractBaseFilter)) return false;
+
+        AbstractBaseFilter that = (AbstractBaseFilter) o;
+
+        return parameterName() != null ? parameterName().equals(that.parameterName()) : that.parameterName() == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return parameterName() != null ? parameterName().hashCode() : 0;
     }
 }

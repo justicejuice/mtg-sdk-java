@@ -12,7 +12,9 @@ import java.io.IOException;
  */
 public class HttpRequestFailedException extends RuntimeException {
 
-	public HttpRequestFailedException(IOException e) {
+    private static final long serialVersionUID = -6747090146706989350L;
+
+    public HttpRequestFailedException(IOException e) {
 		super(e);
 	}
 
