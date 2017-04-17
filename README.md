@@ -23,7 +23,8 @@ Following table shows the features which are supported, or planning to be suppor
 Development State   | Feature Name          | Description
 --------------------|-----------------------|---------------------------------------------------------------
 implemented         | Rulings               | Extracts the rulings array of the cards from JSON response.
-not implemented     | Fluent Querying       | Developers should be able to use filters in a fluent and readable way.
+implemented         | Fluent Querying       | Developers should be able to use filters in a fluent and readable way.
+implemented         | NameFilter            | Adds support for filtering by a cards name.
 
 Prerequisites
 -------
@@ -60,6 +61,10 @@ String setCode = "KLD";
 List<Card> booster = SetAPI.getBooster(setCode);
 ```
 
+#### Create a Path with Filter API
+```java
+String path = new Filter().withName("Nissa").or("Jace").end().filter();
+```
 License
 -------
 This project is licensed under [MIT license](http://opensource.org/licenses/MIT).
