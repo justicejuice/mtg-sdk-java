@@ -1,6 +1,7 @@
 package io.magicthegathering.javasdk.filter;
 
 import io.magicthegathering.javasdk.exception.FilterAlreadyExistsException;
+import io.magicthegathering.javasdk.filter.domain.Color;
 import io.magicthegathering.javasdk.filter.domain.Layout;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,11 +38,12 @@ public class FilterTest {
         String query = testee
                 .byName("Nissa").or("Jace").nextFilter()
                 .byLayout(Layout.DOUBLE_FACED).or(Layout.NORMAL).nextFilter()
-                .byConvertedManaCost("5").end()
+                .byConvertedManaCost("5").nextFilter()
+                .byColor(Color.BLACK).and(Color.BLUE).or(Color.WHITE).end()
                 .compile();
 
         // Assert.
-        assertEquals("?name=Nissa|Jace&layout=double-faced|normal&cmc=5", query);
+        assertEquals("?name=Nissa|Jace&layout=double-faced|normal&cmc=5&colors=black,blue|white", query);
     }
 
     @Test(expected = FilterAlreadyExistsException.class)

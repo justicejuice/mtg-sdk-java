@@ -1,6 +1,7 @@
 package io.magicthegathering.javasdk.filter;
 
 import io.magicthegathering.javasdk.exception.FilterAlreadyExistsException;
+import io.magicthegathering.javasdk.filter.domain.Color;
 import io.magicthegathering.javasdk.filter.domain.Layout;
 import org.apache.commons.lang3.StringUtils;
 
@@ -64,6 +65,20 @@ public class Filter {
         addFilter(convertedManaCostFilter);
 
         return convertedManaCostFilter;
+    }
+
+    /**
+     * Starts the {@link ColorFilter}-Chain.
+     *
+     * @param color The {@link Color} to filter by.
+     * @return The {@link ColorFilter} instance.
+     */
+    public ColorFilter byColor(Color color) {
+        ColorFilter colorFilter = new ColorFilter(this, color);
+
+        addFilter(colorFilter);
+
+        return colorFilter;
     }
 
     /**
